@@ -1,0 +1,33 @@
+.login-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 16px;
+  background: #f5f6fa;
+}
+
+.login-paper {
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.toggle-btn {
+  margin-top: 8px;
+  color: #1976d2;
+}
+
+.input {
+  margin-bottom: 12px;
+}
+
+.submit-btn {
+  margin-top: 16px;
+}
+
+.alert {
+  margin-bottom: 16px;
+}
