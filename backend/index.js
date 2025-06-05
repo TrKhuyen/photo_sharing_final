@@ -7,6 +7,7 @@ const PhotoRouter = require("./routes/PhotoRouter");
 const AuthRouter = require("./routes/AuthRouter");
 const TestRouter = require("./routes/TestRouter");
 
+//connect to mongoDB
 dbConnect();
 
 const allowedOrigin = 'http://localhost:3000';

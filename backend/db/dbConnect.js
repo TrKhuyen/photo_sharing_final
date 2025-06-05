@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+require("dotenv").config(); // load environment variables from .env 
+const mongoose = require("mongoose"); 
 
+// connect to MongoDB 
 async function dbConnect() {
   mongoose
     .connect(process.env.DB_URL)
