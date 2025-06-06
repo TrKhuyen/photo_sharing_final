@@ -1,13 +1,15 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const models = require("../modelData/models.js");
+const models = require("../modelData/models");
+console.log("models loaded:", models && Object.keys(models));
+console.log("userListModel output:", models.userListModel && models.userListModel());
 
 const User = require("../db/userModel.js");
 const Photo = require("../db/photoModel.js");
 const SchemaInfo = require("../db/schemaInfo.js");
 
-const versionString = "1.0";
+const versionString = "1.0"; // version of the schema
 
 async function dbLoad() {
   try {
@@ -17,6 +19,7 @@ async function dbLoad() {
     console.log("Unable connecting to MongoDB Atlas!");
   }
 
+  // Delete existing data
   await User.deleteMany({});
   await Photo.deleteMany({});
   await SchemaInfo.deleteMany({});
@@ -25,6 +28,8 @@ async function dbLoad() {
   const mapFakeId2RealId = {};
   for (const user of userModels) {
     userObj = new User({
+      login_name: user.login_name,
+      password: user.password,
       first_name: user.first_name,
       last_name: user.last_name,
       location: user.location,
