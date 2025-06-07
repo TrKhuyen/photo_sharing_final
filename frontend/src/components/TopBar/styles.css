@@ -1,9 +1,25 @@
 .appbar-toolbar {
+  display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.left-controls {
+.toolbar-left {
+  flex: 1;
+  font-size: large;
+}
+
+.toolbar-center {
+  flex: 2;
   display: flex;
+  font-size: large;
+  justify-content: center;
   align-items: center;
-  gap: 16px;
+}
+
+.toolbar-right {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

@@ -80,42 +80,44 @@ function TopBar() {
 
   return (
     <AppBar position="fixed">
-      <Toolbar className="appbar-toolbar">
-        {currentUser && (
-          <>
-            <Box className="left-controls">
-              <Typography
-                variant="body1"
-                onClick={() => navigate(`/users/${currentUser._id}`)}
-                sx={{ cursor: "pointer", textDecoration: "underline" }}
-              >
-                Hi {currentUser.first_name}
-              </Typography>
-              <Button color="inherit" onClick={() => setUploadDialogOpen(true)}>
-                Add Photo
-              </Button>
-              <Button color="inherit" onClick={handleLogout}>
-                Logout
-              </Button>
-            </Box>
-          </>
-        )}
+  <Toolbar className="appbar-toolbar">
+    <Box className="toolbar-left" >Trần Ngọc Khuyến - B22DCVT299</Box>
 
-        <Typography variant="h6" component="div">
-          {contextText}
-        </Typography>
-      </Toolbar>
+    <Box className="toolbar-center">{contextText}</Box>
 
+    <Box className="toolbar-right">
       {currentUser && (
-        <PhotoUploadDialog
-          open={uploadDialogOpen}
-          onClose={() => setUploadDialogOpen(false)}
-          onSuccess={handlePhotoUploadSuccess}
-          userId={currentUser._id}
-          
-        />
+        <>
+          <Typography
+            variant="body1"
+            onClick={() => navigate(`/users/${currentUser._id}`)}
+            sx={{ cursor: "pointer", textDecoration: "underline", marginRight: 2 }}
+          >
+            Hi {currentUser.first_name}
+          </Typography>
+
+          <Button color="inherit" onClick={() => setUploadDialogOpen(true)}>
+            Add Photo
+          </Button>
+
+          <Button color="inherit" onClick={handleLogout}>
+            Logout
+          </Button>
+        </>
       )}
-    </AppBar>
+    </Box>
+  </Toolbar>
+
+  {currentUser && (
+    <PhotoUploadDialog
+      open={uploadDialogOpen}
+      onClose={() => setUploadDialogOpen(false)}
+      onSuccess={handlePhotoUploadSuccess}
+      userId={currentUser._id}
+    />
+  )}
+</AppBar>
+
   );
 }
 

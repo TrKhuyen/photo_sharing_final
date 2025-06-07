@@ -56,27 +56,14 @@ function EditUser() {
 
   if (loading) return <Typography>Loading...</Typography>;
 
-  // Chỉ cho phép user tự sửa info của mình!
-  if (!currentUser || currentUser._id !== userId) {
-    return <Typography>Bạn không có quyền sửa thông tin user này.</Typography>;
-  }
-
   return (
     <Box component={Paper} p={4} maxWidth={500} mx="auto" mt={4}>
-      <Typography variant="h5" mb={2}>Chỉnh sửa thông tin cá nhân</Typography>
+      <Typography variant="h5" mb={2}>Change your information</Typography>
       <form onSubmit={handleSubmit}>
         <TextField
           fullWidth
           margin="normal"
-          label="Họ"
-          name="last_name"
-          value={form.last_name}
-          onChange={handleChange}
-        />
-        <TextField
-          fullWidth
-          margin="normal"
-          label="Tên"
+          label="First_name"
           name="first_name"
           value={form.first_name}
           onChange={handleChange}
@@ -84,7 +71,15 @@ function EditUser() {
         <TextField
           fullWidth
           margin="normal"
-          label="Vị trí"
+          label="Last_name"
+          name="last_name"
+          value={form.last_name}
+          onChange={handleChange}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          label="Location"
           name="location"
           value={form.location}
           onChange={handleChange}
@@ -92,7 +87,7 @@ function EditUser() {
         <TextField
           fullWidth
           margin="normal"
-          label="Nghề nghiệp"
+          label="Occupation"
           name="occupation"
           value={form.occupation}
           onChange={handleChange}
@@ -100,7 +95,7 @@ function EditUser() {
         <TextField
           fullWidth
           margin="normal"
-          label="Mô tả"
+          label="Description"
           name="description"
           value={form.description}
           onChange={handleChange}
@@ -108,7 +103,7 @@ function EditUser() {
           rows={3}
         />
         <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
-          Lưu thay đổi
+          Save
         </Button>
       </form>
     </Box>
