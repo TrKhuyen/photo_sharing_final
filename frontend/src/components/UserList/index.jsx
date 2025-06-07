@@ -5,7 +5,7 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Badge,
+  //Badge,
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -22,9 +22,7 @@ function UserList({ showBadges = false }) {
     async function loadUsers() {
       const data = await models.userListModel();
       if (Array.isArray(data)) {
-        const sortedUsers = data.sort(
-          (a, b) => (b.photoCount || 0) - (a.photoCount || 0)
-        );
+        const sortedUsers = data;
         setUsers(sortedUsers);
       } else {
         console.error("userListModel returned non-array data:", data);
@@ -56,7 +54,7 @@ function UserList({ showBadges = false }) {
                     primary={`${user.first_name} ${user.last_name}`}
                     secondary={user.occupation}
                   />
-                  {showBadges && (
+                  {/*{showBadges && (
                     <Box className="user-list-badges" display="flex" gap={4}>
                       <Box
                         onClick={(e) => {
@@ -83,7 +81,7 @@ function UserList({ showBadges = false }) {
                         />
                       </Box>
                     </Box>
-                  )}
+                  )}*/}
                 </Box>
               </ListItemButton>
             </ListItem>

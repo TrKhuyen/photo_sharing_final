@@ -117,4 +117,19 @@ router.get("/comment/:userId", async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (!updatedUser) return res.status(404).send({ error: "User not found" });
+    res.send(updatedUser);
+  } catch (err) {
+    res.status(400).send({ error: "Failed to update user", details: err });
+  }
+});
+
+
 module.exports = router;

@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import PhotoUploadDialog from "../PhotoUploadDialog";
 import models from "../../modelData/models";
 import { useAuth } from "../../context/AuthContext";
-import { FormControlLabel, Checkbox } from "@mui/material";
 import "./styles.css";
 
 function TopBar() {
@@ -12,10 +11,6 @@ function TopBar() {
   const navigate = useNavigate();
   const { currentUser, logout } = useAuth();
   const [contextText, setContextText] = useState("");
-  const [advancedFeaturesEnabled, setAdvancedFeaturesEnabled] = useState(() => {
-    const saved = localStorage.getItem("advancedFeaturesEnabled");
-    return saved === "true";
-  });
   const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
 
   useEffect(() => {
@@ -83,21 +78,6 @@ function TopBar() {
     }
   };
 
-  const handleAdvancedFeaturesChange = (event) => {
-    const checked = event.target.checked;
-    setAdvancedFeaturesEnabled(checked);
-    localStorage.setItem("advancedFeaturesEnabled", checked);
-
-    const pathParts = location.pathname.split("/").filter(Boolean);
-
-    if (pathParts[0] === "photos" && pathParts[1]) {
-      const userId = pathParts[1];
-
-      navigate(`/photos/${userId}`, { replace: true });
-      window.location.reload();
-    }
-  };
-
   return (
     <AppBar position="fixed">
       <Toolbar className="appbar-toolbar">
@@ -118,17 +98,6 @@ function TopBar() {
                 Logout
               </Button>
             </Box>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={advancedFeaturesEnabled}
-                  onChange={handleAdvancedFeaturesChange}
-                  color="inherit"
-                />
-              }
-              label="Enable Advanced Features"
-              sx={{ color: "white", ml: 2 }}
-            />
           </>
         )}
 
@@ -143,7 +112,7 @@ function TopBar() {
           onClose={() => setUploadDialogOpen(false)}
           onSuccess={handlePhotoUploadSuccess}
           userId={currentUser._id}
-          advancedFeatures={advancedFeaturesEnabled}
+          
         />
       )}
     </AppBar>

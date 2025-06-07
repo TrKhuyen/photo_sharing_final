@@ -51,7 +51,17 @@ commentsOfUser: (userId) => fetchModel(`/user/comment/${userId}`),
       credentials: 'include',
       body: formData,
     });
+  },
+
+  updateUserInfo: async (userId, userData) => {
+    return await fetchModel(`/user/${userId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(userData),
+    });
   }
+
 
 };
 

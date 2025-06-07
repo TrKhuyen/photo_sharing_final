@@ -22,4 +22,17 @@ async function fetchModel(url, options = {}) {
   }
 }
 
+// export async function deletePhoto(photoId, token) {
+//   const res = await fetch(`/api/photosOfUser/${photoId}`, {
+//     method: "DELETE",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`
+//     },
+//   });
+//   if (!res.ok) throw new Error("Failed to delete photo");
+//   return res.json();
+// }
+
+
 export default fetchModel;

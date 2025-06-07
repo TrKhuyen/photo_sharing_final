@@ -15,6 +15,20 @@ import PhotoStepper from "../PhotoStepper";
 import "./styles.css";
 import { useAuth } from "../../context/AuthContext";
 
+// deletePhoto function to call the backend API
+// async function deletePhoto(photoId, token) {
+//   const BACKEND_URL = "http://localhost:8081";
+//   const res = await fetch(`${BACKEND_URL}/api/photosOfUser/${photoId}`, {
+//     method: "DELETE",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`
+//     },
+//   });
+//   if (!res.ok) throw new Error("Failed to delete photo");
+//   return res.json();
+// }
+
 function UserPhotos() {
   const { userId, photoId } = useParams();
   const navigate = useNavigate();
@@ -93,6 +107,19 @@ function UserPhotos() {
     }
   };
 
+  // deletePhoto function
+  // const handleDeletePhoto = async (photoId) => {
+  //   if (!window.confirm("Do you want to delete this photo?")) return;
+  //   try {
+  //     // call deletePhoto API
+  //     await deletePhoto(photoId, currentUser?.token);
+  //     // delete photo
+  //     setPhotos((prevPhotos) => prevPhotos.filter((p) => p._id !== photoId));
+  //   } catch (err) {
+  //     alert("Xóa ảnh thất bại!");
+  //   }
+  // };
+
   if (!user || !photos.length) {
     return <Typography variant="h4">Loading photos...</Typography>;
   }
@@ -127,11 +154,26 @@ function UserPhotos() {
             <Typography variant="body2" color="textSecondary">
               Posted on {formatDate(photo.date_time)}
             </Typography>
+
+            
+            {/*   (
+              <Button
+                variant="outlined"
+                color="error"
+                sx={{ mt: 1, mb: 1 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeletePhoto(photo._id);
+                }}
+              >
+                DELETE
+              </Button>
+            )*/}
+
             <div className="comment-section">
               <Typography variant="h6" gutterBottom>
                 Comments
               </Typography>
-              
               {photo.comments &&
                 [...photo.comments]
                   .sort((a, b) => new Date(b.date_time) - new Date(a.date_time))
@@ -159,9 +201,9 @@ function UserPhotos() {
                   ))}
             </div>
 
-            {currentUser && (
+            {currentUser && ( 
               <Box mt={2}>
-                <TextField
+                <TextField 
                   fullWidth
                   multiline
                   label="Add a comment"

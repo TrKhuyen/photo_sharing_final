@@ -141,4 +141,19 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Xóa ảnh theo id
+
+router.delete("/:photoId", async (req, res) => {
+  try {
+    const { photoId } = req.params;
+    const deletedPhoto = await Photo.findByIdAndDelete(photoId);
+    if (!deletedPhoto) {
+      return res.status(404).json({ message: "Photo not found" });
+    }
+    res.json({ message: "Photo deleted", photo: deletedPhoto });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting photo", error });
+  }
+});
+
 module.exports = router;
